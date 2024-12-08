@@ -1,0 +1,43 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}
+Product Details
+{% endblock title %}
+
+{% block main_content %}
+
+<h1 class="text-center mt-5 fw-bold"> Products Detail. | {{pk}} </h1>
+
+<div class="container py-5 mb-5">
+    <div class="row flex justify-content-between">
+        <div class="img2 col-lg-5 mt-2">
+            <img src="{{product.product_image.url}}" class='image col-xs-6 col-ms-12 col-lg-12 mt-3 text-ms-center w-100 h-75' alt="">
+        </div>
+
+        <div class="productdetail col-lg-5">
+            <h1 style="font-family: Georgia; font-size: 50px;">{{product.title}}</h1>
+
+            <h4 class="text-danger"> Rs. {{product.discounted_price}}/- &nbsp</h4>
+            <small class="fw-bold text-decoration-line-through text-info">
+                Rs. {{product.selling_price}}</small>
+
+            <br><br>
+            <h3>Feature Products</h3>
+            <h1 style="font-family: Georgia; font-size: 15px;"><strong>Description:</strong><br>{{product.description}}</h1>
+
+
+             <h1 style="font-family: Georgia; font-size: 15px;"><strong>Composition :</strong><br>{{product.composition}}</h1>
+            <h1 style="font-family: Georgia; font-size: 15px; margin-bottom:50px"><strong>Prodapp :</strong><br>{{product.prodapp}}</h1>
+
+            <div class="buttons row flex" style="font-family: Rajdhani;">
+                <button type="submit" class="d-grid gap-2 btn1 btn btn-danger p-1 m-1 btn-lg text-decoration-none text-white">Add to Cart</button>
+            
+                <div class="btn btn-dark p-1 m-1 btn-lg"><a href="#" class="text-decoration-none text-white">Buy Now</a></div>
+
+            </div> 
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}
