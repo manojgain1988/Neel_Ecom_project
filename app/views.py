@@ -2,7 +2,7 @@ from django.db.models import Count
 from django.shortcuts import render
 from django.views import View
 from app.models import Product
-from app.forms import CustomerRegistrationForm, AuthenticationForm, UsernameField
+from app.forms import CustomerRegistrationForm, AuthenticationForm, UsernameField,CustomerProfileForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 # Create your views here.
@@ -70,7 +70,17 @@ class CustomerRegistrationView(View):
 
 class ProfileView(View):
     def get(self,request):
+        form = CustomerProfileForm()
         return render(request,'app/profile.html', locals())
+    
     def post(self,request):
         return render(request,'app/profile.html', locals())
 
+            
+
+class AddressView(View):
+    def get(self,request):
+        form = CustomerProfileForm()
+        return render(request,'app/address.html', locals())
+    
+ 

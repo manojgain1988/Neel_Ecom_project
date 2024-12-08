@@ -23,9 +23,9 @@ Login
             <form method="POST" action="" novalidate class="shadow p-4">
                 {% csrf_token %}
                
-                 {% for fm in form %}
-                 {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
-                 <br>
+                {% for fm in form %}
+                    {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                    <br>
                 {%endfor%}
 
                 <small><a href="{% url 'password_reset' %}">Forgot Password ?</a></small><br>

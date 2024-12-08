@@ -1,6 +1,8 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm
 from django.contrib.auth.models import User
+from app.models import Customer
+
 
 class LoginForm(AuthenticationForm):  
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus':'True', 'class': 'form-control'}))
@@ -22,4 +24,15 @@ class MyPasswordResetForm(PasswordChangeForm):
     pass
         
 class CustomerProfileForm(forms.ModelForm):
-    pass
+    class Meta:
+        model = Customer
+        fields = ['id','name','locality','mobile','city','state','zipcode']
+        widgets = {
+            'name' : forms.TextInput(attrs={"class": "form_control"}),
+            'locality' : forms.TextInput(attrs={"class": "form_control"}),
+            'city' : forms.TextInput(attrs={"class": "form_control"}),
+            'mobile' : forms.NumberInput(attrs={"class": "form_control"}),
+            'state' : forms.Select(attrs={"class": "form_control"}),
+            'zipcode' : forms.NumberInput(attrs={"class": "form_control"}),
+        }
+        

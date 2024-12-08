@@ -8,13 +8,45 @@ Profile
 
 
 {% block main_content %}
-<div class="container ">
-<div class="row my-3">
-    <div class="col-sm-6 offset-sm-3">
-        <h2 class="text-center fw-bold">Customer Profile</h2>
+<div class="container my-5">
+    <div class="row ">
+        <h2> Welcome : <span class="text-capitalize fw-bold">{{request.user}} </span></h2>
         <hr>
-            
-        </div>
+    </div> 
+
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class=" alert alert-{{ message.tags }}" role="alert">{{ message }}</div>                    
+        {% endfor %}
+    {% endif %}
+
+    <div class="col-ms-2 border-end">
+        <ul class="list-unstyled">
+            <li class="d-grid"><a href="{% url 'profile' %}" class="btn btn-success w-25">Profile</a></li><br>
+            <li class="d-grid"><a href="{% url 'address' %}" class="btn btn-success w-25">Address</a></li>
+        </ul>     
+    </div>
+    <div class="col-sm-8 offset-sm-1">
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {% for fm in form %}
+                {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                <br>
+            {%endfor%}
+
+            <div class="col-12 mt-3">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p class="alert alert_danger my-3">{{error}}</p>  
+                {% endfor %}
+            {% endif %}
+
+        </form>
     </div>
 </div>
 {% endblock main_content %}

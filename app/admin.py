@@ -10,5 +10,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Customer)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id','user','locality','city','state','zipcode']
+    list_display = ['id','user','locality','mobile','city','state','zipcode']
 
