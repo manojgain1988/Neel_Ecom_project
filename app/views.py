@@ -1,7 +1,7 @@
 from django.db.models import Count
 from django.shortcuts import render
 from django.views import View
-from app.models import Product
+from app.models import Product,Customer
 from app.forms import CustomerRegistrationForm, AuthenticationForm, UsernameField,CustomerProfileForm
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -66,7 +66,7 @@ class CustomerRegistrationView(View):
             messages.warning(request,'Invalid Input Data !')
         return render(request,'app/customerregistration.html', locals())
            
-            
+             
 
 class ProfileView(View):
     def get(self,request):
@@ -74,13 +74,34 @@ class ProfileView(View):
         return render(request,'app/profile.html', locals())
     
     def post(self,request):
+        form = CustomerProfileForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            name = form.cleaned_data['name']
+            locality = form.cleaned_data['locality']
+            city = form.cleaned_data['city']
+            mobile = form.cleaned_data['mobile']
+            state = form.cleaned_data['state']
+            zipcode = form.cleaned_data['zipcode']
+            
+            reg = Customer(user=user,name=name,locality=locality,city=city,mobile=mobile,state=state,zipcode=zipcode)
+            reg.save()
+            messages.success(request,'Congratulation Customer Profile Save Successfully !')
+        else:
+            messages.warning(request,'Invalid Input Data !')
         return render(request,'app/profile.html', locals())
 
             
 
-class AddressView(View):
-    def get(self,request):
-        form = CustomerProfileForm()
-        return render(request,'app/address.html', locals())
+def Address(request):
+    add = Customer.objects.filter(user=request.user)
+    return render(request,'app/address.html', locals())
     
- 
+
+class UpdateAddress(View):
+    def get(self,request,pk):
+        form = CustomerProfileForm()
+        return render(request,'app/updateAddress.html', locals())
+    def post(self,request,pk):
+        form = CustomerProfileForm(request.POST)
+        return render(request,'app/updateAddress.html', locals())

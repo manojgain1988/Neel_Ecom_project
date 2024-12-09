@@ -23,16 +23,17 @@ class CustomerRegistrationForm(UserCreationForm):
 class MyPasswordResetForm(PasswordChangeForm):
     pass
         
+        
 class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['id','name','locality','mobile','city','state','zipcode']
         widgets = {
-            'name' : forms.TextInput(attrs={"class": "form_control"}),
-            'locality' : forms.TextInput(attrs={"class": "form_control"}),
-            'city' : forms.TextInput(attrs={"class": "form_control"}),
-            'mobile' : forms.NumberInput(attrs={"class": "form_control"}),
-            'state' : forms.Select(attrs={"class": "form_control"}),
-            'zipcode' : forms.NumberInput(attrs={"class": "form_control"}),
+            'name' : forms.TextInput(attrs={"class": "form-control"}),
+            'locality' : forms.TextInput(attrs={"class": "form-control"}),
+            'city' : forms.TextInput(attrs={"class": "form-control"}),
+            'mobile' : forms.NumberInput(attrs={"class": "form-control"}),
+            'state' : forms.Select(attrs={"class": "form-control"}),
+            'zipcode' : forms.NumberInput(attrs={"class": "form-control"}),
         }
         

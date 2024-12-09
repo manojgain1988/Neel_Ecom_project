@@ -13,12 +13,6 @@ Login
     <div class="col-sm-6 offset-sm-3">
         <h2 class="text-center fw-bold">Login Form</h2>
         <hr>
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class=" alert alert-{{ message.tags }}" role="alert">{{ message }}</div>                    
-                    {% endfor %}
-                {% endif %}
-
 
             <form method="POST" action="" novalidate class="shadow p-4">
                 {% csrf_token %}
@@ -28,7 +22,7 @@ Login
                     <br>
                 {%endfor%}
 
-                <small><a href="{% url 'password_reset' %}">Forgot Password ?</a></small><br>
+                <small><a href="{% url 'password_reset' %}">Forgot Password ?</a></small>
 
                 <input class="btn btn-success mt-3 w-100"  type="submit" value='login'>
 
@@ -42,11 +36,12 @@ Login
                     {% endfor %}
                 {% endif %}
 
-                {% comment %} {% if messages %}
+                
+                {% if messages %}
                         {% for message in messages %}
                             <div class=" alert alert-{{ message.tags }}" role="alert">{{ message }}</div>                
                         {% endfor %}
-                {% endif %} {% endcomment %}
+                {% endif %}
 
             </form>
         </div>
