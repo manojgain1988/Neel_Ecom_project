@@ -49,6 +49,7 @@ class ProductDetail(View):
 class LoginForm(AuthenticationForm):
     def get(self,request):
         form = CustomerRegistrationForm()
+        # return redirect('home')
         return render(request,'app/customerregistration.html', locals())
     
 
@@ -123,8 +124,15 @@ class UpdateAddress(View):
         return redirect('address')
     
     
-# def logout_view(request):
-#     logout(request)
-#     messages.success(request,'Logout Successfully !')
-#     return redirect('login')
+def logout_view(request):
+    logout(request)
+    messages.success(request,'Logout Successfully !')
+    return redirect('login')
    
+   
+def add_to_cart(request):
+    return render(request,'app/addToCart.html', locals())
+
+
+def show_cart(request):
+    return render(request,'app/showcart.html', locals())

@@ -14,6 +14,13 @@ Login
         <h2 class="text-center fw-bold">Login Form</h2>
         <hr>
 
+
+           {% if messages %}
+                {% for message in messages %}
+                    <div class=" alert alert-{{ message.tags }}" role="alert">{{ message }}</div>                
+                {% endfor %}
+            {% endif %}
+
             <form method="POST" action="" novalidate class="shadow p-4">
                 {% csrf_token %}
                
@@ -37,11 +44,7 @@ Login
                 {% endif %}
 
                 
-                {% if messages %}
-                        {% for message in messages %}
-                            <div class=" alert alert-{{ message.tags }}" role="alert">{{ message }}</div>                
-                        {% endfor %}
-                {% endif %}
+                
 
             </form>
         </div>
